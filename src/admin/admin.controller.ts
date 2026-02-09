@@ -2,14 +2,22 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
+import { AdminSignup } from './dto/user-signup.dto';
 
-@Controller('admin')
+@Controller('api/v1/admin')
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
+  @Post('signup')
+  async signup(@Body() AdminSignup:AdminSignup){
+    return await this.adminService.signup(AdminSignup)
+     
+
+  }
 
   @Post()
   create(@Body() createAdminDto: CreateAdminDto) {
-    return this.adminService.create(createAdminDto);
+    // return this.adminService.create(createAdminDto);
+    return 'hi'
   }
 
   @Get()

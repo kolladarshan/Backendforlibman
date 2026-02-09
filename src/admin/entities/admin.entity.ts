@@ -1,6 +1,6 @@
 import { Roles } from "src/enums/rol-enum";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-@Entity('user')
+@Entity('admin')
 export class AdminEntity {
     @PrimaryGeneratedColumn()
     id:number;
