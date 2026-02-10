@@ -3,7 +3,7 @@ import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
 import { AdminSignup } from './dto/user-signup.dto';
-
+import { adminsignin } from './dto/admin-signnin.dto';
 @Controller('api/v1/admin')
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
@@ -12,6 +12,12 @@ export class AdminController {
     return await this.adminService.signup(AdminSignup)
      
 
+  }
+  @Post('signin')
+  async  signin(@Body()adminsignin:adminsignin ){
+    const admin= await this.adminService.signin(adminsignin);
+    const accesToken = await this.adminService.accessToken(admin);
+    return {accesToken,admin};
   }
 
   @Post()
